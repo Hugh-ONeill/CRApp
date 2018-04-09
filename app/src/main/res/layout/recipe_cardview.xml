@@ -6,8 +6,8 @@
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     android:orientation="horizontal"
-    card_view:cardElevation="5dp"
-    card_view:cardCornerRadius="5dp">
+    card_view:cardCornerRadius="5dp"
+    card_view:cardElevation="2dp">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,17 +15,15 @@
 
         <ImageView
             android:id="@+id/recipe_image"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
-            android:adjustViewBounds="true"
+            android:layout_marginTop="16dp"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_pizza"
             card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintDimensionRatio="h,1:1"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintHorizontal_bias="0.0"
-            card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -33,12 +31,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:textAppearance="@android:style/TextAppearance.Material.Large"
-            card_view:layout_constraintBottom_toTopOf="@+id/price_textbox"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toEndOf="@+id/recipe_image"
+            card_view:layout_constraintEnd_toStartOf="@+id/price_textbox"
+            card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
             card_view:layout_constraintVertical_chainStyle="spread_inside" />
 
@@ -46,13 +43,26 @@
             android:id="@+id/price_textbox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:textAppearance="@android:style/TextAppearance.Material.Large"
+            card_view:layout_constraintEnd_toStartOf="@+id/recipe_image"
+            card_view:layout_constraintStart_toEndOf="@+id/name_textbox"
+            card_view:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/ingredients_textbox"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:textAppearance="@android:style/TextAppearance.Material.Large"
+            android:layout_marginTop="8dp"
+            android:textAppearance="@android:style/TextAppearance.Material.Medium"
             card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toEndOf="@+id/recipe_image"
+            card_view:layout_constraintEnd_toStartOf="@+id/recipe_image"
+            card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/name_textbox" />
     </android.support.constraint.ConstraintLayout>
 

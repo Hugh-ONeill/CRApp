@@ -9,7 +9,7 @@ import java.util.List;
 public class RecipeRepository {
 
     private RecipeDao recipeDao;
-    private List<Recipe> allRecipes;
+    private LiveData<List<Recipe>> allRecipes;
 
     RecipeRepository(Application application) {
         RecipeDatabase db = RecipeDatabase.getInstance(application);
@@ -17,7 +17,7 @@ public class RecipeRepository {
         allRecipes = recipeDao.getAllRecipes();
     }
 
-    public List<Recipe> getAllRecipes() {
+    public LiveData<List<Recipe>> getAllRecipes() {
         return allRecipes;
     }
 

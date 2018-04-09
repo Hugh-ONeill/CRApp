@@ -23,17 +23,17 @@ public interface RecipeDao {
     void delete(Recipe... recipes);
 
     @Query("SELECT * FROM recipe ORDER BY rating ASC")
-    public List<Recipe> getAllRecipes();
+    LiveData<List<Recipe>> getAllRecipes();
 
     @Query("SELECT * FROM recipe ORDER BY name ASC")
-    public List<Recipe> getAllRecipesByName();
+    LiveData<List<Recipe>> getAllRecipesByName();
 
     @Query("SELECT * FROM recipe WHERE name LIKE '%'+:keyWord+'%' ORDER BY rating ASC")
-    public List<Recipe> getRecipesByKeyword(String keyWord);
+    LiveData<List<Recipe>> getRecipesByKeyword(String keyWord);
 
     @Query("SELECT * FROM recipe WHERE ingredients LIKE '%'+:tag+'%' ORDER BY rating ASC")
-    public List<Recipe> getRecipesByTag(String tag);
+    LiveData<List<Recipe>> getRecipesByTag(String tag);
 
     @Query("SELECT * FROM recipe WHERE ingredients LIKE :tags ORDER BY rating ASC")
-    public List<Recipe> getRecipesByTags(String tags);
+    LiveData<List<Recipe>> getRecipesByTags(String tags);
 }

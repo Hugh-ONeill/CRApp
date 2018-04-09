@@ -2,13 +2,14 @@ package edu.pitt.cs.cs1635.group8.collegerecipeapp;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
+import android.arch.lifecycle.LiveData;
 
 import java.util.List;
 
 public class RecipeListViewModel extends AndroidViewModel {
 
     private RecipeRepository recipeRepository;
-    private List<Recipe> allRecipes;
+    private LiveData<List<Recipe>> allRecipes;
 
     public RecipeListViewModel (Application application) {
         super(application);
@@ -16,7 +17,7 @@ public class RecipeListViewModel extends AndroidViewModel {
         allRecipes = recipeRepository.getAllRecipes();
     }
 
-    public List<Recipe> getAllRecipes() {
+    public LiveData<List<Recipe>> getAllRecipes() {
         return allRecipes;
     }
 

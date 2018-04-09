@@ -2,19 +2,21 @@ package edu.pitt.cs.cs1635.group8.collegerecipeapp;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity(tableName = "recipe")
 public class Recipe {
 
     @PrimaryKey(autoGenerate = true)
-    private final Integer id = null;
+    private int id = 0;
 
     private String name;
-    private float price;
-    private float rating;
+    private double price;
+    private double rating;
     @ColumnInfo(name = "rating_count")
-    private float ratingCount;
+    private int ratingCount;
     @ColumnInfo(name = "picture_id")
     private int pictureId;
 
@@ -31,10 +33,24 @@ public class Recipe {
         this.directions = "";
     }
 
-    public void updateRating(float newRating) {
+    @Ignore
+    public Recipe(String name, double price, String ingredients) {
+        this.name = name;
+        this.price = price;
+        this.rating = 0;
+        this.ratingCount = 0;
+        this.pictureId = 0;
+        this.ingredients = ingredients;
+        this.directions = "";
+    }
+
+    public void updateRating(double newRating) {
         this.ratingCount++;
-        float updatedAverageRating = this.rating + (newRating - this.rating) / (this.ratingCount);
-        this.rating = updatedAverageRating;
+        this.rating = this.rating + (newRating - this.rating) / (this.ratingCount);
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getId() {
@@ -49,27 +65,27 @@ public class Recipe {
         this.name = name;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
-    public float getRating() {
+    public double getRating() {
         return rating;
     }
 
-    public void setRating(float rating) {
+    public void setRating(double rating) {
         this.rating = rating;
     }
 
-    public float getRatingCount() {
+    public int getRatingCount() {
         return ratingCount;
     }
 
-    public void setRatingCount(float ratingCount) {
+    public void setRatingCount(int ratingCount) {
         this.ratingCount = ratingCount;
     }
 

@@ -4,25 +4,6 @@
     <string name="dish">Dish</string>
     <string name="ingredients">Ingredients</string>
     <string name="directions">Direction</string>
-    <string-array name="amounts">
-        <item> </item>
-        <item>1/8</item>
-        <item>1/4</item>
-        <item>1/3</item>
-        <item>1/2</item>
-        <item>2/3</item>
-        <item>3/4</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
-    </string-array>
     <string-array name="by">
         <item>By Keyword</item>
         <item>By Ingredients</item>
@@ -30,4 +11,16 @@
     <string name="rec_nam">Recipe name here</string>
     <string name="ing_nam">Ingredient goes here</string>
     <string name="dir">Directions go here</string>
+
+    <string name="title_activity_recipe_view">Recipe</string>
+    <string name="portion_text">Portions: </string>
+    <string-array name="portion_modifiers">
+        <item>&#188;</item>
+        <item>&#189;</item>
+        <item>&#190;</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
 </resources>
