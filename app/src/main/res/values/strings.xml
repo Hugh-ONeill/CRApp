@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">CollegeRecipe</string>
     <string name="action_settings">Settings</string>
     <string name="dish">Dish</string>
     <string name="ingredients">Ingredients</string>
@@ -12,6 +11,7 @@
     <string name="ing_nam">Ingredient goes here</string>
     <string name="dir">Directions go here</string>
 
+    <string name="app_name">College Recipe App</string>
     <string name="title_activity_recipe_view">Recipe</string>
     <string name="portion_text">Portions: </string>
     <string-array name="portion_modifiers">
