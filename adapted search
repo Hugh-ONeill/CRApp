@@ -1,0 +1,58 @@
+        myLayout.removeAllViews(); //clears the recipes being shown to update with those that meet criteria
+
+        myDb = new DatabaseHelper(this); //database handler, should probably move this to the onCreate since its a global anyway
+        ArrayList<Recipe> res = myDb.getAllRecipes();  //create cursor to traverse DB, I don't know much about DB but I'm sure there's more efficient
+                                         //ways to handle search then retrieving all database data
+        ArrayList<Recipe> passed = new ArrayList<Recipe>();
+        if(res.size() == 0){
+            showMessage("Error", "No Data"); //Error handling for empty database
+            return false;
+        }
+        int j = 0;
+        while(j < res.size()) { //move through all the recipes
+            StringBuffer build = new StringBuffer();  //string builder for recipe display data
+            build.append(res.get(j).getName() + "\n"); //add the name to builder
+            build.append(":$" + res.get(j).getPrice() + "\n"); //add the price to builder, semicolon for easy splitting
+            if(searchby.getSelectedItem().equals("By Keyword")){  //if user is searching by keyword
+                if(build.toString().toUpperCase().contains(s.toUpperCase())){  //this ignores cases and checks if user keyword is present in name
+                    passed.add(res.get(j));
+                }
+            }
+            else {  //If the user is searching by ingredient
+                if(tags.size() != 0) { //if the user is using tags
+                    int matchesCriteria = 0; //incrementer to make sure recipe matches all user criteria specified within tags
+                    for (int i = 0; i < tags.size(); i++) { //for all of the tags
+                        String theIngredient = tags.get(i).getText().toString().toUpperCase().substring(1); //remove the + or - icon, which is added for user awareness of tag use
+                        String withOrWithout = tags.get(i).getText().toString().substring(0,1); //get the ingredient name
+                        if(withOrWithout.equals("+")){ //if the tag was an ingredient the user wanted
+                            if(res.get(j).getIngredients().toUpperCase().contains((tags.get(i).getText().toString().toUpperCase().substring(1)))) { //check if the ingredient is in the recipe
+                                matchesCriteria++; //if it does, increment the amount of criteria it matches
+                            }
+                        }
+                        else{ //this is an ingredient the user wants to avoid
+                            if(!res.get(j).getIngredients().toUpperCase().contains(theIngredient)){ //make sure it's not in the recipe
+                                matchesCriteria++; //if so, increment the amount of criteria it matches
+                            }
+                        }
+                    }
+                    if (matchesCriteria == tags.size()) {  //if the recipe matches all the users criteria
+                        passed.add(res.get(j));
+                    }
+                }
+                else{  //if the user is not using tags
+                    Spinner withOrWithout = findViewById(R.id.containsOrNot);  //get the with or without spinner
+                    if(withOrWithout.getSelectedItem().toString().equals("With")) { //check if user is searching for recipes with or without ingredients, this is with
+                        if (res.get(j).getIngredients().toUpperCase().contains(s.toUpperCase())) { //ignore case and check if recipe contains ingredient
+                            passed.add(res.get(j));                     
+                        }
+                    }
+                    else{  //this is searching without recipe
+                        if(!res.get(j).getIngredients().toUpperCase().contains(s.toUpperCase())){  //make sure the recipe does not include ingredient
+                            passed.add(res.get(j));
+                        }
+                    }
+                }
+            }
+            j++;
+        }
+        return true;
