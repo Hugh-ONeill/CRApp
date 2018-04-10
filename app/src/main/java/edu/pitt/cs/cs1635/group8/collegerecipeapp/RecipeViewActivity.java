@@ -1,8 +1,14 @@
 package edu.pitt.cs.cs1635.group8.collegerecipeapp;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import android.support.v4.app.Fragment;
@@ -16,17 +22,33 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RecipeViewActivity extends AppCompatActivity {
 
     private SectionsPagerAdapter recipeSectionsPagerAdapter;
     private ViewPager recipeViewPager;
-    private String recipeName;
-    private int recipeCost;
+    private RecipeListViewModel recipeListViewModel;
+    private Recipe currentRecipe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Intent intent = getIntent();
+        int recipeId = intent.getIntExtra("recipeId", 0);
+        recipeListViewModel = ViewModelProviders.of(this).get(RecipeListViewModel.class);
+
+        recipeListViewModel.getRecipe(recipeId).observe(this, new Observer<Recipe>() {
+            @Override
+            public void onChanged(@Nullable final Recipe thisRecipe) {
+                currentRecipe = thisRecipe;
+            }
+        });
+
         setContentView(R.layout.activity_recipe_view);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -39,13 +61,6 @@ public class RecipeViewActivity extends AppCompatActivity {
 
         TabLayout recipeTabs = findViewById(R.id.recipe_tabs);
         recipeTabs.setupWithViewPager(recipeViewPager);
-
-        Intent thisIntent = getIntent();
-        String[] recipeData = thisIntent.getStringExtra("recipeInfo").split(":");
-        System.out.println(recipeData);
-
-        recipeName = recipeData[0];
-        recipeCost = Integer.valueOf(recipeData[1]);
     }
 
     @Override
@@ -65,10 +80,15 @@ public class RecipeViewActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public Recipe getCurrentRecipe()
+    {
+        return currentRecipe;
+    }
+
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         final int PAGE_COUNT = 3;
-        private String[] sectionHeaders =  new String[] {recipeName, "Ingredients", "Directions"};
+        private String[] sectionHeaders =  new String[] {"Main", "Ingredients", "Directions"};
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -109,9 +129,17 @@ public class RecipeViewActivity extends AppCompatActivity {
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            RecipeViewActivity thisActivity = (RecipeViewActivity) getActivity();
+            Recipe currentRecipe = thisActivity.getCurrentRecipe();
+
             View rootView = inflater.inflate(R.layout.fragment_recipe_view_main, container, false);
+            TextView nameText = rootView.findViewById(R.id.recipe_name_textbox);
             Spinner portionSpinner = rootView.findViewById(R.id.portion_spinner);
+            TextView priceText = rootView.findViewById(R.id.price_value_textbox);
+
+            nameText.setText(currentRecipe.getName());
             portionSpinner.setSelection(3);
+            priceText.setText(String.valueOf(currentRecipe.getPrice()));
             return rootView;
         }
     }
@@ -124,6 +152,21 @@ public class RecipeViewActivity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_recipe_view_ingredients, container, false);
+            RecyclerView ingredientList = rootView.findViewById(R.id.ingredient_list);
+
+            RecipeViewActivity thisActivity = (RecipeViewActivity) getActivity();
+            Recipe currentRecipe = thisActivity.getCurrentRecipe();
+            List<String> ingredients = new ArrayList<>();
+            ingredients.add("Cheese");
+            ingredients.add("Sauce");
+
+            final IngredientAdapter ingredientAdapter = new IngredientAdapter(getContext());
+            ingredientList.setAdapter(ingredientAdapter);
+            ingredientList.setLayoutManager(new LinearLayoutManager(getContext()));
+            ingredientList.setItemAnimator(new DefaultItemAnimator());
+
+            ingredientAdapter.setIngredientList(ingredients);
+
             return rootView;
         }
     }
@@ -136,6 +179,21 @@ public class RecipeViewActivity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_recipe_view_directions, container, false);
+            RecyclerView directionList = rootView.findViewById(R.id.direction_list);
+
+            RecipeViewActivity thisActivity = (RecipeViewActivity) getActivity();
+            Recipe currentRecipe = thisActivity.getCurrentRecipe();
+            List<String> directions = new ArrayList<>();
+            directions.add("Do Thing");
+            directions.add("Do Thing Again");
+
+            final DirectionAdapter directionAdapter = new DirectionAdapter(getContext());
+            directionList.setAdapter(directionAdapter);
+            directionList.setLayoutManager(new LinearLayoutManager(getContext()));
+            directionList.setItemAnimator(new DefaultItemAnimator());
+
+            directionAdapter.setDirectionList(directions);
+
             return rootView;
         }
     }

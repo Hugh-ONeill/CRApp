@@ -23,6 +23,9 @@ public class Recipe {
     private String ingredients;
     private String directions;
 
+    @Ignore
+    private double portions = 1;
+
     public Recipe(String name) {
         this.name = name;
         this.price = 0;
@@ -111,5 +114,15 @@ public class Recipe {
 
     public void setDirections(String directions) {
         this.directions = directions;
+    }
+
+    @Ignore
+    public double getPortions() {
+        return portions;
+    }
+
+    @Ignore
+    public void setPortions(double portions) {
+        this.portions = portions;
     }
 }

@@ -12,12 +12,16 @@
     <string name="dir">Directions go here</string>
 
     <string name="app_name">College Recipe App</string>
-    <string name="title_activity_recipe_view">Recipe</string>
+    <string name="title_activity_recipe_view"></string>
     <string name="portion_text">Portions: </string>
+    <string name="price_text">Price: $</string>
     <string-array name="portion_modifiers">
-        <item>&#188;</item>
+        <!--item>&#188;</item>
         <item>&#189;</item>
-        <item>&#190;</item>
+        <item>&#190;</item-->
+        <item>1/4</item>
+        <item>1/2</item>
+        <item>3/4</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>

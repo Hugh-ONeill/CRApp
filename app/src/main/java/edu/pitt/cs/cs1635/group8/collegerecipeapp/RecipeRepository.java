@@ -9,19 +9,21 @@ import java.util.List;
 public class RecipeRepository {
 
     private RecipeDao recipeDao;
-    private LiveData<List<Recipe>> allRecipes;
 
     RecipeRepository(Application application) {
         RecipeDatabase db = RecipeDatabase.getInstance(application);
         recipeDao = db.getRecipeDao();
-        allRecipes = recipeDao.getAllRecipes();
     }
 
     public LiveData<List<Recipe>> getAllRecipes() {
-        return allRecipes;
+        return recipeDao.getAllRecipes();
     }
 
+    public LiveData<Recipe> getRecipe(int recipeId) { return recipeDao.getRecipe(recipeId); }
+
     public void insertRecipe (Recipe recipe) { new insertAsyncTask(recipeDao).execute(recipe); }
+
+    public void clearTable() { new clearAsyncTask(recipeDao).execute(); }
 
     private static class insertAsyncTask extends AsyncTask<Recipe, Void, Void> {
 
@@ -34,6 +36,21 @@ public class RecipeRepository {
         @Override
         protected Void doInBackground(final Recipe... params) {
             asyncTaskDao.insert(params[0]);
+            return null;
+        }
+    }
+
+    private static class clearAsyncTask extends AsyncTask<Void, Void, Void> {
+
+        private RecipeDao asyncTaskDao;
+
+        clearAsyncTask(RecipeDao thisDao) {
+            asyncTaskDao = thisDao;
+        }
+
+        @Override
+        protected Void doInBackground(final Void... params) {
+            asyncTaskDao.clearTable();
             return null;
         }
     }

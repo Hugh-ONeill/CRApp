@@ -15,9 +15,16 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".RecipeViewActivity"
+            android:label="@string/title_activity_recipe_view"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.pitt.cs.cs1635.group8.collegerecipeapp.MainActivity" />
         </activity>
     </application>
 

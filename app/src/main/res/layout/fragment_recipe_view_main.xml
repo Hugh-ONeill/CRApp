@@ -2,78 +2,96 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".RecipeViewActivity$RecipeViewMainFragment">
 
     <ImageView
         android:id="@+id/recipe_picture"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
+        android:adjustViewBounds="true"
+
+        android:scaleType="fitCenter"
         android:src="@mipmap/ic_launcher_round"
-        app:layout_constraintBottom_toTopOf="@+id/recipe_title_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/recipe_title_text"
+        android:id="@+id/recipe_name_textbox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="1dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:text=""
+        android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance.Material.Large"
         android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/portion_text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recipe_picture" />
 
     <TextView
         android:id="@+id/portion_text"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="4dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_weight="1"
         android:text="@string/portion_text"
+        android:textAlignment="textEnd"
         android:textAppearance="@android:style/TextAppearance.Material.Large"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/portion_spinner"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recipe_title_text" />
+        app:layout_constraintTop_toBottomOf="@+id/recipe_name_textbox" />
 
     <Spinner
         android:id="@+id/portion_spinner"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="8dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="4dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_weight="1"
         android:entries="@array/portion_modifiers"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/price_text"
         app:layout_constraintStart_toEndOf="@+id/portion_text"
-        app:layout_constraintTop_toBottomOf="@+id/recipe_title_text" />
+        app:layout_constraintTop_toBottomOf="@+id/recipe_name_textbox" />
+
+    <TextView
+        android:id="@+id/price_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:text="@string/price_text"
+        android:textAlignment="textEnd"
+        android:textAppearance="@android:style/TextAppearance.Material.Large"
+        app:layout_constraintEnd_toStartOf="@+id/price_value_textbox"
+        app:layout_constraintStart_toEndOf="@+id/portion_spinner"
+        app:layout_constraintTop_toBottomOf="@+id/recipe_name_textbox" />
+
+    <TextView
+        android:id="@+id/price_value_textbox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:textAlignment="viewStart"
+        android:textAppearance="@android:style/TextAppearance.Material.Large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/price_text"
+        app:layout_constraintTop_toBottomOf="@+id/recipe_name_textbox" />
 
 </android.support.constraint.ConstraintLayout>

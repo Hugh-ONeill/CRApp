@@ -33,12 +33,13 @@ public class MainActivity extends AppCompatActivity {
         searchRecycler.setItemAnimator(new DefaultItemAnimator());
 
         recipeListViewModel = ViewModelProviders.of(this).get(RecipeListViewModel.class);
+        recipeListViewModel.clearTable();
 
-        //recipeListViewModel.insertRecipe(new Recipe("Pizza", 9.0, "Cheese, Sauce"));
-        //recipeListViewModel.insertRecipe(new Recipe("Cake", 6.0, "Flour, Sugar, Egg"));
-        //recipeListViewModel.insertRecipe(new Recipe("Hotdog", 1.0, "Hotdog, Bun"));
-        //recipeListViewModel.insertRecipe(new Recipe("Hotdogger", 1.0, "Actual Dog, Bun"));
-        //recipeListViewModel.insertRecipe(new Recipe("Fairy Drink", 1.0, "Sugar, Tears"));
+        recipeListViewModel.insertRecipe(new Recipe("Pizza", 9.0, "Cheese, Sauce"));
+        recipeListViewModel.insertRecipe(new Recipe("Cake", 6.0, "Flour, Sugar, Egg"));
+        recipeListViewModel.insertRecipe(new Recipe("Hotdog", 1.0, "Hotdog, Bun"));
+        recipeListViewModel.insertRecipe(new Recipe("Hotdogger", 1.0, "Actual Dog, Bun"));
+        recipeListViewModel.insertRecipe(new Recipe("Fairy Drink", 1.0, "Sugar, Tears"));
 
         recipeListViewModel.getAllRecipes().observe(this, new Observer<List<Recipe>>() {
             @Override
