@@ -1,0 +1,99 @@
+{
+  "project_info": {
+    "project_number": "150605950554",
+    "firebase_url": "https://college-recipe-app.firebaseio.com",
+    "project_id": "college-recipe-app",
+    "storage_bucket": "college-recipe-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:150605950554:android:486aa4522b4840d7",
+        "android_client_info": {
+          "package_name": "edu.pitt.cs.cs1635.group8.collegerecipeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "150605950554-fu0urjojitjpm50n2kccvl31iphlallc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.pitt.cs.cs1635.group8.collegerecipeapp",
+            "certificate_hash": "7bb111078a79c867095793ab1c1f7f12b56319b3"
+          }
+        },
+        {
+          "client_id": "150605950554-ne32dgic1rse1k4ji9tgomev7l4qkvln.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDti_1Q2Ny2ZpNbVGg0BnyojwI94CZIESo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "150605950554-ne32dgic1rse1k4ji9tgomev7l4qkvln.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:150605950554:android:74405ad5e38ab734",
+        "android_client_info": {
+          "package_name": "edu.pitt.cs.cs1635.rlk53.search"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "150605950554-bno4i0domrdpda7s15adlde76ggq0qcp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.pitt.cs.cs1635.rlk53.search",
+            "certificate_hash": "7bb111078a79c867095793ab1c1f7f12b56319b3"
+          }
+        },
+        {
+          "client_id": "150605950554-ne32dgic1rse1k4ji9tgomev7l4qkvln.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDti_1Q2Ny2ZpNbVGg0BnyojwI94CZIESo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "150605950554-ne32dgic1rse1k4ji9tgomev7l4qkvln.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
