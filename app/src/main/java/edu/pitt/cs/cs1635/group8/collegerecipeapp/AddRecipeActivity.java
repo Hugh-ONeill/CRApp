@@ -25,6 +25,11 @@ import android.widget.Toast;
 //import com.google.firebase.auth.FirebaseAuth;
 //import com.google.firebase.auth.FirebaseUser;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 public class AddRecipeActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
@@ -42,15 +47,19 @@ public class AddRecipeActivity extends AppCompatActivity implements AdapterView.
     ArrayAdapter<CharSequence> adapter;
     int numIngredients = 0;
     String usersPicture = null;
-    //private FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("recipes");
 
     RecipeListViewModel recipeListViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_recipe);
-        //mAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         recipeListViewModel = ViewModelProviders.of(this).get(RecipeListViewModel.class);
 
         spinner = findViewById(R.id.spinner2);  //initial spinner for amounts
@@ -108,6 +117,9 @@ public class AddRecipeActivity extends AppCompatActivity implements AdapterView.
                 thisRecipe.setDirections(recipeDirections);
                 thisRecipe.setPictureId(usersPicture);
 
+                String key = myRef.push().getKey();
+                myRef.child(key).setValue(thisRecipe);
+
                 recipeListViewModel.insertRecipe(thisRecipe);
 
                 //if(isInserted){ //this updates the user with a toast about whether their recipe was created or not
@@ -136,7 +148,7 @@ public class AddRecipeActivity extends AppCompatActivity implements AdapterView.
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-        //FirebaseUser currentUser = mAuth.getCurrentUser();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
     }
 
 

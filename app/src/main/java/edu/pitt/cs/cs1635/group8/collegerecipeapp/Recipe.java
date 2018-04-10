@@ -9,21 +9,21 @@ import android.arch.persistence.room.PrimaryKey;
 public class Recipe {
 
     @PrimaryKey(autoGenerate = true)
-    private int id = 0;
+    public int id = 0;
 
-    private String name;
-    private double price;
-    private double rating;
+    public String name;
+    public double price;
+    public double rating;
     @ColumnInfo(name = "rating_count")
-    private int ratingCount;
+    public int ratingCount;
     @ColumnInfo(name = "picture_id")
-    private String pictureId;
+    public String pictureId;
 
-    private String ingredients;
-    private String directions;
+    public String ingredients;
+    public String directions;
 
     @Ignore
-    private double portions = 1;
+    public double portions = 1;
 
     public Recipe(String name) {
         this.name = name;
