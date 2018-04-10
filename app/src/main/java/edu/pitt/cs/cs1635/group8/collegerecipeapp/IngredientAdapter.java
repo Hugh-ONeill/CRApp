@@ -25,7 +25,7 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
     }
 
     private final LayoutInflater ingredientInflator;
-    private List<String> ingredientList;
+    private String[] ingredientList;
 
     public IngredientAdapter(Context context) {
         this.ingredientInflator = LayoutInflater.from(context);
@@ -39,18 +39,23 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
 
     @Override
     public void onBindViewHolder(IngredientViewHolder holder, int position) {
-        String thisIngredient = ingredientList.get(position);
+        String thisIngredient = ingredientList[position];
+        String[] thisIngredientSplit = thisIngredient.split(",");
         holder.positionTextbox.setText(String.valueOf(position + 1));
-        holder.ingredientTextbox.setText(thisIngredient);
+        holder.ingredientTextbox.setText(thisIngredientSplit[0]);
+        if (thisIngredientSplit.length > 1)
+        {
+            holder.measureTextbox.setText(thisIngredientSplit[1]);
+        }
     }
 
-    void setIngredientList(List<String> ingredientList){
+    void setIngredientList(String[] ingredientList){
         this.ingredientList = ingredientList;
         notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
-        return ingredientList == null ? 0 : ingredientList.size();
+        return ingredientList == null ? 0 : ingredientList.length;
     }
 }

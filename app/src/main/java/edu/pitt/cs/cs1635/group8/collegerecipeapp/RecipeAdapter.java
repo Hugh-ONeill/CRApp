@@ -2,6 +2,10 @@ package edu.pitt.cs.cs1635.group8.collegerecipeapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -51,6 +55,12 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         holder.nameTextbox.setText(String.valueOf(thisRecipe.getName()));
         holder.priceTextbox.setText(String.valueOf(thisRecipe.getPrice()));
         holder.ingredientsTextbox.setText(String.valueOf(thisRecipe.getIngredients()));
+
+        String recipePicture = thisRecipe.getPictureId();
+        if (recipePicture != null) {
+            Bitmap userSelectedImage = BitmapFactory.decodeFile(thisRecipe.getPictureId());
+            holder.recipeImage.setImageBitmap(userSelectedImage);
+        }
 
         holder.baseView.setOnClickListener(new CardView.OnClickListener() {
             @Override

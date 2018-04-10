@@ -3,7 +3,6 @@ package edu.pitt.cs.cs1635.group8.collegerecipeapp;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
-import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity(tableName = "recipe")
@@ -18,7 +17,7 @@ public class Recipe {
     @ColumnInfo(name = "rating_count")
     private int ratingCount;
     @ColumnInfo(name = "picture_id")
-    private int pictureId;
+    private String pictureId;
 
     private String ingredients;
     private String directions;
@@ -31,7 +30,7 @@ public class Recipe {
         this.price = 0;
         this.rating = 0;
         this.ratingCount = 0;
-        this.pictureId = 0;
+        this.pictureId = null;
         this.ingredients = "";
         this.directions = "";
     }
@@ -42,7 +41,7 @@ public class Recipe {
         this.price = price;
         this.rating = 0;
         this.ratingCount = 0;
-        this.pictureId = 0;
+        this.pictureId = null;
         this.ingredients = ingredients;
         this.directions = "";
     }
@@ -92,11 +91,11 @@ public class Recipe {
         this.ratingCount = ratingCount;
     }
 
-    public int getPictureId() {
+    public String getPictureId() {
         return pictureId;
     }
 
-    public void setPictureId(int pictureId) {
+    public void setPictureId(String pictureId) {
         this.pictureId = pictureId;
     }
 

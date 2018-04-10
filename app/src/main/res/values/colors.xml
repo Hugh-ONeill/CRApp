@@ -21,4 +21,18 @@
     <color name="accent_light">#FFAA9F</color>
     <color name="accent_dark">#FE270B</color>
     <color name="accent_darker">#C81700</color>
+
+    <color name="green_temp">#23A96E</color>
+    <color name="green_dark">#159204</color>
+    <color name="bright_green">#02D8B0</color>
+    <color name="button_green">#10a54a</color>
+    <color name="red_temp">#AB1111</color>
+    <color name="red_dark">#990000</color>
+    <color name="bright_red">#FF0000</color>
+    <color name="button_red">#BB1111</color>
+    <color name="blue_temp">#1111AB</color>
+    <color name="blue_dark">#0000bb</color>
+    <color name="bright_blue">#3399FF</color>
+    <color name="card_blue">#55AABB</color>
+    <color name="orange">#FF6600</color>
 </resources>

@@ -24,8 +24,29 @@
             app:layout_scrollFlags="exitUntilCollapsed|enterAlwaysCollapsed"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/search_by_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:entries="@array/search_by" />
+
+            <Spinner
+                android:id="@+id/contains_or_not_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:entries="@array/tag_options"
+                android:visibility="invisible" />
+        </LinearLayout>
+
         <SearchView
-            android:id="@+id/searchbar"
+            android:id="@+id/recipe_search"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
@@ -39,7 +60,20 @@
     <include
         android:id="@+id/include"
         layout="@layout/content_main"
+        android:layout_height="350dp"
         app:layout_anchor="@+id/appBarLayout"
         app:layout_anchorGravity="bottom|center" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/add_recipe_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:backgroundTint="@color/grey_dark"
+        app:fabSize="normal"
+        app:layout_anchor="@+id/include"
+        app:layout_anchorGravity="right|bottom"
+        app:rippleColor="@android:color/darker_gray"
+        app:srcCompat="@android:drawable/ic_input_add" />
 
 </android.support.design.widget.CoordinatorLayout>

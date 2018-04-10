@@ -3,6 +3,10 @@ package edu.pitt.cs.cs1635.group8.collegerecipeapp;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +25,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -137,6 +142,14 @@ public class RecipeViewActivity extends AppCompatActivity {
             Spinner portionSpinner = rootView.findViewById(R.id.portion_spinner);
             TextView priceText = rootView.findViewById(R.id.price_value_textbox);
 
+            String pictureId = currentRecipe.getPictureId();
+            if (pictureId != null)
+            {
+                Bitmap userSelectedImage = BitmapFactory.decodeFile(pictureId);
+                ImageView recipePicture = rootView.findViewById(R.id.recipe_picture);
+                recipePicture.setImageBitmap(userSelectedImage);
+            }
+
             nameText.setText(currentRecipe.getName());
             portionSpinner.setSelection(3);
             priceText.setText(String.valueOf(currentRecipe.getPrice()));
@@ -156,16 +169,13 @@ public class RecipeViewActivity extends AppCompatActivity {
 
             RecipeViewActivity thisActivity = (RecipeViewActivity) getActivity();
             Recipe currentRecipe = thisActivity.getCurrentRecipe();
-            List<String> ingredients = new ArrayList<>();
-            ingredients.add("Cheese");
-            ingredients.add("Sauce");
 
             final IngredientAdapter ingredientAdapter = new IngredientAdapter(getContext());
             ingredientList.setAdapter(ingredientAdapter);
             ingredientList.setLayoutManager(new LinearLayoutManager(getContext()));
             ingredientList.setItemAnimator(new DefaultItemAnimator());
 
-            ingredientAdapter.setIngredientList(ingredients);
+            ingredientAdapter.setIngredientList(currentRecipe.getIngredients().split(";"));
 
             return rootView;
         }
@@ -183,16 +193,13 @@ public class RecipeViewActivity extends AppCompatActivity {
 
             RecipeViewActivity thisActivity = (RecipeViewActivity) getActivity();
             Recipe currentRecipe = thisActivity.getCurrentRecipe();
-            List<String> directions = new ArrayList<>();
-            directions.add("Do Thing");
-            directions.add("Do Thing Again");
 
             final DirectionAdapter directionAdapter = new DirectionAdapter(getContext());
             directionList.setAdapter(directionAdapter);
             directionList.setLayoutManager(new LinearLayoutManager(getContext()));
             directionList.setItemAnimator(new DefaultItemAnimator());
 
-            directionAdapter.setDirectionList(directions);
+            directionAdapter.setDirectionList(currentRecipe.getDirections().split(","));
 
             return rootView;
         }

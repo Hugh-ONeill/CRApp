@@ -27,4 +27,13 @@
         <item>3</item>
         <item>4</item>
     </string-array>
+    <string-array name="search_by">
+        <item>By Keyword</item>
+        <item>By Ingredients</item>
+    </string-array>
+    <string-array name="tag_options">
+        <item>With</item>
+        <item>Without</item>
+    </string-array>
+    <string name="title_activity_add_recipe">AddRecipeActivity</string>
 </resources>

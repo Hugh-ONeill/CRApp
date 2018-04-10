@@ -9,6 +9,13 @@
     tools:context="edu.pitt.cs.cs1635.group8.collegerecipeapp.MainActivity"
     tools:showIn="@layout/activity_main">
 
+    <RelativeLayout
+        android:id="@+id/tag_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </RelativeLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/search_recycler"
         android:layout_width="match_parent"

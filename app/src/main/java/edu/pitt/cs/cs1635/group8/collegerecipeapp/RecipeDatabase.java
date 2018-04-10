@@ -8,7 +8,7 @@ import android.content.Context;
 @Database(entities = {Recipe.class}, version = 1, exportSchema = false)
 public abstract class RecipeDatabase extends RoomDatabase {
 
-    private static final String DB_NAME = "Database.db";
+    private static final String DB_NAME = "RecipeDatabase.db";
     private static volatile RecipeDatabase INSTANCE;
 
     static synchronized RecipeDatabase getInstance(Context context) {
@@ -23,7 +23,7 @@ public abstract class RecipeDatabase extends RoomDatabase {
     }
 
     private static RecipeDatabase create(final Context context) {
-        return Room.databaseBuilder(context.getApplicationContext(), RecipeDatabase.class, DB_NAME).build();
+        return Room.databaseBuilder(context.getApplicationContext(), RecipeDatabase.class, DB_NAME).fallbackToDestructiveMigration().build();
     }
 
     public abstract RecipeDao getRecipeDao();

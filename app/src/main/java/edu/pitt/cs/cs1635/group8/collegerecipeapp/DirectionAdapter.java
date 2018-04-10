@@ -23,7 +23,7 @@ public class DirectionAdapter extends RecyclerView.Adapter<DirectionAdapter.Dire
     }
 
     private final LayoutInflater directionInflator;
-    private List<String> directionList;
+    private String[] directionList;
 
     public DirectionAdapter(Context context) {
         this.directionInflator = LayoutInflater.from(context);
@@ -37,19 +37,19 @@ public class DirectionAdapter extends RecyclerView.Adapter<DirectionAdapter.Dire
 
     @Override
     public void onBindViewHolder(DirectionViewHolder holder, int position) {
-        String thisDirection = directionList.get(position);
+        String thisDirection = directionList[position];
         holder.positionTextbox.setText(String.valueOf(position + 1));
         holder.directionTextbox.setText(thisDirection);
     }
 
-    void setDirectionList(List<String> directionList){
+    void setDirectionList(String[] directionList){
         this.directionList = directionList;
         notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
-        return directionList == null ? 0 : directionList.size();
+        return directionList == null ? 0 : directionList.length;
     }
 }
 
