@@ -25,6 +25,10 @@ public class Recipe {
     @Ignore
     public double portions = 1;
 
+    public Recipe() {
+        
+    }
+
     public Recipe(String name) {
         this.name = name;
         this.price = 0;

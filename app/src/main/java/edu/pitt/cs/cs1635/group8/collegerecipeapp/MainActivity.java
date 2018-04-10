@@ -20,6 +20,12 @@ import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.Spinner;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +38,9 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     private RecipeListViewModel recipeListViewModel;
     private RecipeAdapter recipeAdapter;
     private List<Recipe> recipeList;
-    private List<Recipe> searchList;
+
+
+    DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("recipes");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +61,24 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         searchRecycler.setItemAnimator(new DefaultItemAnimator());
 
         recipeListViewModel = ViewModelProviders.of(this).get(RecipeListViewModel.class);
-        //recipeListViewModel.clearTable();
+        recipeListViewModel.clearTable();
+
+        myRef.addListenerForSingleValueEvent(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot d : dataSnapshot.getChildren()) {
+                            Recipe r = d.getValue(Recipe.class);
+                            recipeListViewModel.insertRecipe(r);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                }
+        );
 
         //recipeListViewModel.insertRecipe(new Recipe("Pizza", 9.0, "Cheese,1;Sauce,1"));
         //recipeListViewModel.insertRecipe(new Recipe("Cake", 6.0, "Flour,2;Sugar,1;Egg,2"));
